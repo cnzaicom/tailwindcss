@@ -1,0 +1,32 @@
+{
+    "name": "cnaicom/tailwindcss",
+    "description": "Laravel frontend preset for Tailwind CSS",
+    "authors": [
+        {
+            "name": "Vampire",
+            "email": "cnzaicoma@126.com"
+        }
+    ],
+    "keywords": [
+        "laravel",
+        "preset",
+        "tailwindcss"
+    ],
+    "license": "MIT",
+    "require": {
+        "laravel/framework": "^8.0",
+        "laravel/ui": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cnzaicom\\TailwindCssPreset\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cnzaicom\\TailwindCssPreset\\TailwindCssPresetServiceProvider"
+            ]
+        }
+    }
+}
