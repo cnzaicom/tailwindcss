@@ -9,7 +9,6 @@ class TailwindCssPresetServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        dd(1);
         UiCommand::macro('tailwindcss', function ($command) {
             TailwindCssPreset::install();
 

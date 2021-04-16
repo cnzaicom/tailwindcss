@@ -27,7 +27,8 @@ class TailwindCssPreset extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return array_merge([
-            '@tailwindcss/custom-forms',
+            'laravel-mix' => '^6.0.16',
+            '@tailwindcss/custom-forms'=> '^0.2.1',
             'tailwindcss' => '^2.1.1',
         ], Arr::except($packages, [
             'bootstrap',
