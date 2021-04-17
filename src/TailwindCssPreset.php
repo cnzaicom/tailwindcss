@@ -29,6 +29,8 @@ class TailwindCssPreset extends Preset
         return array_merge([
             'laravel-mix' => '^6.0.16',
             'tailwindcss' => '^2.1.1',
+            "@tailwindcss/forms"=> "^0.3.2",
+            "@tailwindcss/typography"=> "^0.4.0",
         ], Arr::except($packages, [
             'bootstrap',
             'laravel-mix',

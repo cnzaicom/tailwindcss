@@ -3,9 +3,18 @@
 1. Fresh install Laravel >= 7.0 and `cd` to your app.
 2. Install this preset via `composer require cnzaicom/tailwindcss --dev`. Laravel will automatically discover this package. No need to register the service provider.
 3. Edit tailwindcss.config.js to add   `plugins: [
-   require('@tailwindcss/custom-forms'),
+   require('@tailwindcss/forms'),
+   require('@tailwindcss/typography'),
+   require('tailwindcss-children'),
    ]`
-
+4. Edit tailwind.config.js like this
+```
+mix.js('resources/js/app.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+        require('tailwindcss'),
+        require('postcss-import'),
+    ]);
+```
 ### a. For Presets without Authentication
 
 1. Use `php artisan ui tailwindcss` for the basic Tailwind CSS preset
