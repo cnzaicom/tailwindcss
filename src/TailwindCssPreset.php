@@ -31,6 +31,8 @@ class TailwindCssPreset extends Preset
             'tailwindcss' => '^2.0.1',
             "@tailwindcss/forms"=> "^0.3.2",
             "@tailwindcss/typography"=> "^0.4.0",
+            "postcss-import" => "^14.0.0",
+            "postcss-nested" => "^5.0.0",
         ], Arr::except($packages, [
             'bootstrap',
             'laravel-mix',
