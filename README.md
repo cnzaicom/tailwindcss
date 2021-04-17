@@ -7,7 +7,7 @@
    require('@tailwindcss/typography'),
    require('tailwindcss-children'),
    ]`
-4. Edit tailwind.config.js like this
+4. Edit webpack.mix.js like this
 ```
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
