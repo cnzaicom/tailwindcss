@@ -14,7 +14,9 @@ class TailwindCssPreset extends Preset
     public static function install()
     {
         static::updatePackages();
+        static::updateStyles();
         static::updateWelcomePage();
+        static::updateBootstrapping();
         static::removeNodeModules();
     }
 
@@ -27,8 +29,9 @@ class TailwindCssPreset extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return array_merge([
+            'autoprefixer' => '^9.6',
             'laravel-mix' => '^6.0.16',
-            'tailwindcss' => '^2.0.1',
+            'tailwindcss' => '^2.1.2',
             "@tailwindcss/forms"=> "^0.3.2",
             "@tailwindcss/typography"=> "^0.4.0",
             "postcss-import" => "^14.0.0",
@@ -36,16 +39,38 @@ class TailwindCssPreset extends Preset
         ], Arr::except($packages, [
             'bootstrap',
             'laravel-mix',
+            'popper.js',
         ]));
+    }
+
+    protected static function updateStyles()
+    {
+        tap(new Filesystem, function ($filesystem) {
+            $filesystem->deleteDirectory(resource_path('sass'));
+            $filesystem->delete(public_path('js/app.js'));
+            $filesystem->delete(public_path('css/app.css'));
+
+            if (! $filesystem->isDirectory($directory = resource_path('css'))) {
+                $filesystem->makeDirectory($directory, 0755, true);
+            }
+        });
+
+        copy(__DIR__.'/tailwindcss-stubs/resources/css/app.css', resource_path('css/app.css'));
     }
 
 
     protected static function updateWelcomePage()
     {
         (new Filesystem)->delete(resource_path('views/welcome.blade.php'));
-
         copy(__DIR__.'/tailwindcss-stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
     }
+
+    protected static function updateBootstrapping()
+    {
+        copy(__DIR__.'/tailwindcss-stubs/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__.'/tailwindcss-stubs/webpack.mix.js', base_path('webpack.mix.js'));
+    }
+
 
     protected static function scaffoldController()
     {
